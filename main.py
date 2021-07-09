@@ -168,7 +168,7 @@ if __name__ == '__main__':
         if curr_count < 3:
             print(f'{curr_count} generic exceptions have occurred, alerting!')
             update_generic_exc_count()
-            text_via_twilio(str(e))
+            text_via_twilio(str(e)[0:500])
         else:
             print(
                 f'{curr_count}+ generic exceptions have occurred. delete '
