@@ -4,6 +4,7 @@ import json
 import os
 import time
 
+import requests
 import selenium.webdriver as webdriver
 import twilio.rest as twilio_rest
 
@@ -149,6 +150,16 @@ def check_availability():
     driver.close()
 
 
+def is_connected():
+    """Check if we have internet access"""
+    try:
+        requests.get('https://google.com', timeout=5.0)
+        return True
+    except requests.exceptions.RequestException:
+        print('No internet connection?')
+        return False
+
+
 if __name__ == '__main__':
     required_vars = [TWILIO_ACCOUNT,
                      TWILIO_TOKEN,
@@ -158,6 +169,10 @@ if __name__ == '__main__':
     if not all(required_vars):
         print('Missing required env vars!')
         raise ValueError('Missing required env vars!')
+
+    if not is_connected():
+        # no internet possibly, exit with 1
+        exit(1)
 
     try:
         print(f'checking availability {datetime.datetime.utcnow().isoformat()}...')
