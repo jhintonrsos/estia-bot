@@ -2,6 +2,7 @@
 import datetime
 import json
 import os
+import random
 import time
 
 import requests
@@ -152,8 +153,9 @@ def check_availability():
 
 def is_connected():
     """Check if we have internet access"""
+    choice = random.choice(['https://google.com', 'https://bing.com'])
     try:
-        requests.get('https://google.com', timeout=10.0)
+        requests.get(choice, timeout=10.0)
         return True
     except requests.exceptions.RequestException:
         print('No internet connection?')
