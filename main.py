@@ -153,7 +153,7 @@ def check_availability():
 def is_connected():
     """Check if we have internet access"""
     try:
-        requests.get('https://google.com', timeout=5.0)
+        requests.get('https://google.com', timeout=10.0)
         return True
     except requests.exceptions.RequestException:
         print('No internet connection?')
