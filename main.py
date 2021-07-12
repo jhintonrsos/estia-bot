@@ -137,6 +137,7 @@ def check_availability():
         options=options,
         executable_path=r'/usr/local/bin/geckodriver'
     )
+    driver.set_page_load_timeout(15)
     driver.get(URL)
     print(f'Page Title: {driver.title}')
     if not os.path.exists(CHECK_ONE):
