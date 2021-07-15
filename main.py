@@ -140,7 +140,7 @@ def check_availability():
     driver.set_page_load_timeout(15)
     driver.get(URL)
     print(f'Page Title: {driver.title}')
-    if 'Entrata' in driver.title.lower():
+    if 'entrata' in driver.title.lower():
         print('Site is being updated?')
         driver.close()
         return
